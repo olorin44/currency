@@ -3,39 +3,26 @@ const urlCurrencyTableA =
 const urlCurrencyTableB =
   "https://api.nbp.pl/api/exchangerates/tables/b/?format=json";
 
-/////////////////////////////////////////////////////////////////////////////
 let currencyDataTableAll = [];
-let currencyTableA;
-let currencyTableB;
 const getCurrencyData = () => {
   fetch(urlCurrencyTableA)
     .then(resp => resp.json())
     .then(resp => {
-      currencyTableA = resp;
-      currencyDataTableAll.push(currencyTableA);
-      //   console.log(currencyTableA);
+      currencyDataTableAll.push(resp);
     });
   fetch(urlCurrencyTableB)
     .then(resp => resp.json())
     .then(resp => {
-      currencyTableB = resp;
-      currencyDataTableAll.push(currencyTableB);
-      //   console.log(currencyTableB);
-      //   console.log(currencyDataTableAll);
+      currencyDataTableAll.push(resp);
     });
+  return currencyDataTableAll, console.log(currencyDataTableAll);
 };
 
-console.log(currencyDataTableAll);
+window.onload = getCurrencyData();
 
-// getCurrencyData();
-
-// let dupa = currencyTableA;
-// let kutas = currencyTableB;
-// console.log(currencyDataTableAll);
-// console.log(dupa);
-// console.log(currencyTableB);
-
-////////////////////////////////////////////////////////////////////////////////////////
+const dupa = () => {
+  console.log(currencyDataTableAll);
+};
 
 const Cash = props => {
   const value = (props.cash / props.ratio).toFixed(2);
@@ -56,7 +43,7 @@ class CurrencyCheck extends React.Component {
       id: 1,
       name: "numerek 1: ",
       ratio: 2.5,
-      title: "wartość nr 1: "
+      title: currencyDataTableAll
     },
     {
       id: 2,
@@ -97,7 +84,7 @@ class CurrencyCheck extends React.Component {
     ));
     return (
       <div className="app">
-        <button onClick={getCurrencyData}>button</button>
+        <button onClick={dupa}>dupa</button>
         <label>
           <input
             type="number"
