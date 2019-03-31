@@ -3,7 +3,7 @@ class CurrencyExchange extends React.Component {
     currencies: [],
     rates: [],
     amount: 1,
-    currency: "PLN",
+    currency: "USD",
     secondCurrency: "EUR"
   };
 
@@ -62,29 +62,30 @@ class CurrencyExchange extends React.Component {
           <p>API used for currencies rates: https://exchangeratesapi.io/</p>
           <p>
             Exchange rates API is a free service for current and historical
-            foreign exchange rates published by the{" "}
-            <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html">European Central Bank</a>
+            foreign exchange rates published by the
           </p>
-          <br />
-          <label className="currency">
-            base currency is:{" "}
+          <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html">
+            European Central Bank
+          </a>
+          <label>
+            base currency is:
             <select value={currency} onChange={this.changeCurrency}>
               {currencyOption}
               <option>{currency}</option>
             </select>
           </label>
-          <label className="second-currency">
-            second currency is:{" "}
+          <label>
+            second currency is:
             <select value={secondCurrency} onChange={this.changeSecondCurrency}>
               {currencyOption}
               <option>{secondCurrency}</option>
             </select>
           </label>
-          <label className="currency-amount">
-            Your amount:{" "}
+          <label>
+            type amount
             <input type="number" value={amount} onChange={this.changeAmount} />
           </label>
-          <p className="currency-exchange-info">
+          <p className="exchange-info">
             {amount} {currency} = {displayScore} {secondCurrency}
           </p>
         </div>
