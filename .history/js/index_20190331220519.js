@@ -59,14 +59,14 @@ class CurrencyExchange extends React.Component {
       <div className="app">
         <div className="container">
           <label>
-            base currency is:
+            base currency is: {currency}
             <select value={currency} onChange={this.changeCurrency}>
               {currencyOption}
               <option>{currency}</option>
             </select>
           </label>
           <label>
-            second currency is:
+            second currency is: {secondCurrency}
             <select value={secondCurrency} onChange={this.changeSecondCurrency}>
               {currencyOption}
               <option>{secondCurrency}</option>

@@ -1,12 +1,3 @@
-class CurrencyExchange extends React.Component {
-  state = {
-    currencies: [],
-    rates: [],
-    amount: 1,
-    currency: "USD",
-    secondCurrency: "EUR"
-  };
-
   getCurrencyData = currency => {
     const urlApi = `https://api.exchangeratesapi.io/latest?base=${currency}`;
 
@@ -58,15 +49,18 @@ class CurrencyExchange extends React.Component {
     return (
       <div className="app">
         <div className="container">
+          <button id="dupa" onClick={this.kutas}>
+            dupa
+          </button>
           <label>
-            base currency is:
+            base currency is: {currency}
             <select value={currency} onChange={this.changeCurrency}>
               {currencyOption}
               <option>{currency}</option>
             </select>
           </label>
           <label>
-            second currency is:
+            second currency is: {secondCurrency}
             <select value={secondCurrency} onChange={this.changeSecondCurrency}>
               {currencyOption}
               <option>{secondCurrency}</option>
