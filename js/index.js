@@ -3,8 +3,8 @@ class CurrencyExchange extends React.Component {
     currencies: [],
     rates: [],
     amount: 1,
-    currency: "PLN",
-    secondCurrency: "EUR"
+    currency: "USD",
+    secondCurrency: "PLN"
   };
 
   getCurrencyData = currency => {
@@ -17,7 +17,7 @@ class CurrencyExchange extends React.Component {
       .then(resp =>
         this.setState({
           rates: resp["rates"],
-          currencies: Object.keys(resp["rates"]).sort()
+          currencies: Object.keys(resp["rates"]).sort(),
         })
       );
   };
@@ -40,6 +40,17 @@ class CurrencyExchange extends React.Component {
   currencyConvert = (amount, rates, secondCurrency) => {
     return Number.parseFloat(amount * rates[secondCurrency]).toFixed(2);
   };
+
+  currencySwitch = event => {
+    const currencyTemp1 = this.state.currency
+    const currencyTemp2 = this.state.secondCurrency
+    
+    this.setState({
+      currency: currencyTemp2,
+      secondCurrency: currencyTemp1
+    })
+    this.getCurrencyData(this.state.secondCurrency);
+  }
 
   componentDidMount() {
     this.getCurrencyData(this.state.currency);
@@ -87,6 +98,7 @@ class CurrencyExchange extends React.Component {
           <p className="currency-exchange-info">
             {amount} {currency} = {displayScore} {secondCurrency}
           </p>
+          <button className="btn-switch" onClick={this.currencySwitch}>{`\u21c5`}</button>
         </div>
       </div>
     );
